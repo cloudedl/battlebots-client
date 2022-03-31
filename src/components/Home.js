@@ -1,4 +1,4 @@
-import Indexbattlebots from "./battlebots/indexBots"
+import IndexBattlebots from "./battlebots/IndexBots"
 
 const Home = (props) => {
 	// const { msgAlert, user } = props
@@ -7,7 +7,7 @@ const Home = (props) => {
 	return (
 		<>
 			<h2>Home Page</h2>
-			<Indexbattlebots />
+			<IndexBattlebots />
 		</>
 	)
 }

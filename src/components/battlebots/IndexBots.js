@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllBattleBots } from '../../api/battlebots'
 import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 // I'm going to declare a style object
 // this will be used to corral my cards
@@ -12,7 +13,7 @@ const cardContainerLayout = {
     flexFlow: 'row wrap'
 }
 
-const Indexbattlebots = (props) => {
+const IndexBattlebots = (props) => {
     const [battlebots, setBattleBots] = useState(null)
 
     useEffect(() => {
@@ -24,18 +25,6 @@ const Indexbattlebots = (props) => {
     }, [])
 
 
-    const battlebotCards = battlebots.map(battlebot => (
-        <Card key={battlebot.id} style={{ width: '30%' }} className="m-2">
-            <Card.Header>
-                {battlebot.name}
-            </Card.Header>
-            <Card.Body>
-                <Card.Text>
-                    <p>Primary Weapon: {battlebot.primaryWeapon}</p>
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    ))
 
     if (!battlebots) {
         return <p>loading...</p>
@@ -43,13 +32,21 @@ const Indexbattlebots = (props) => {
         return <p>No battlebots yet, please add some</p>
     }
 
-    let battlebotsJSX
-
+    let battlebotCards
+    console.log('what is battlebot in indexBots', battlebots)
     if (battlebots.length > 0) {
-        battlebotsJSX = battlebots.map(battlebot => (
-            <li key={battlebot.id}>
-                {battlebot.name}
-            </li>
+        battlebotCards = battlebots.map(battlebot => (
+            
+            <Card key={battlebot.id} style={{ width: '30%' }} className="m-2">
+                <Card.Header>
+                    {battlebot.name}
+                </Card.Header>
+                <Card.Body>
+                    <Card.Text >
+                        <Link to={`/battlebots/${battlebot.id}`}>Primary Weapon: {battlebot.primaryWeapon}</Link>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
         ))
     }
 
@@ -63,4 +60,4 @@ const Indexbattlebots = (props) => {
     )
 }
 
-export default Indexbattlebots
+export default IndexBattlebots
