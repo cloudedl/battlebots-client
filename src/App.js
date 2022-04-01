@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowBot from './components/battlebots/ShowBot'
+import CreateBattleBot from './components/battlebots/CreateBot'
 
 const App = () => {
 
@@ -71,9 +72,17 @@ const App = () => {
           />
 		  <Route
 				path='/battlebots/:id'
-				element={<ShowBot msgAlert={msgAlert} setUser={setUser} />}
+				element={<ShowBot msgAlert={msgAlert} user={user} />}
 			/>
-				</Routes>
+			  <Route
+				path='/addBattleBot/'
+				element={
+					<RequireAuth user={user}>
+						{<CreateBattleBot msgAlert={msgAlert} user={user} />}
+					</RequireAuth>}
+
+			/>
+		</Routes>
 				
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

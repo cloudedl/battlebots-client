@@ -15,11 +15,11 @@ export const getOneBot = (battlebotId) => {
 export const createBattleBot = (user, newBattleBot) => {
     return axios({
         url:`${apiUrl}/battlebots`,
-        method: 'Post',
+        method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: newBattleBot
+        data: {battlebot: newBattleBot}
     })
 
 }

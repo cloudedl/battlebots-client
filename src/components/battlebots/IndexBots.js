@@ -35,21 +35,27 @@ const IndexBattlebots = (props) => {
     let battlebotCards
     console.log('what is battlebot in indexBots', battlebots)
     if (battlebots.length > 0) {
-        battlebotCards = battlebots.map(battlebot => (
-            
-            <Card key={battlebot.id} style={{ width: '30%' }} className="m-2">
+        battlebotCards = battlebots.map(battlebot => {
+            console.log('type of battlebot._id', typeof(battlebot._id))
+            console.log('type of battlebot._id', (battlebot._id))
+            const id = battlebot._id
+            console.log()
+            return(
+            <Card key={id} style={{ width: '30%' }} className="m-2">
                 <Card.Header>
                     {battlebot.name}
                 </Card.Header>
                 <Card.Body>
                     <Card.Text >
-                        <Link to={`/battlebots/${battlebot.id}`}>Primary Weapon: {battlebot.primaryWeapon}</Link>
+                        <Link to={`/battlebots/${id}`}>Primary Weapon: {battlebot.primaryWeapon}</Link>
                     </Card.Text>
                 </Card.Body>
             </Card>
-        ))
+            )
+        })
+        
+        
     }
-
     return (
         <>
             <h3>All the battlebots</h3>
